@@ -43,9 +43,10 @@ public class ClockUpdater implements ActionListener{
     }
     
     public void startCountdown(int seconds) {
-        new Countdown(seconds, this);
+        Countdown countdown = new Countdown(seconds, this);
         remainingSeconds = seconds;
         updateLabels(remainingSeconds);
+        countdown.start();
     }
     
     /* (non-Javadoc)
