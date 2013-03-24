@@ -23,7 +23,7 @@ import javax.swing.border.EmptyBorder;
 public class IntervalTimerApp extends JFrame{
 
     private JPanel contentPane;
-    private JLabel timeLabel;
+    private JLabel labelSeconds, labelMinutes, labelHours;
     private JButton buttonStart, buttonStop;
     
     /**
@@ -59,9 +59,22 @@ public class IntervalTimerApp extends JFrame{
         {
             JPanel visualTimerPanel = new JPanel();
             visualTimerPanel.setBorder(null);
-            timeLabel = new JLabel();
-            timeLabel.setFont(new Font("Dialog", Font.PLAIN, 64));
-            visualTimerPanel.add(timeLabel);
+            visualTimerPanel.setLayout(new FlowLayout());
+            Font fontTimeLabels = new Font("Dialog", Font.PLAIN, 64);
+            JLabel[] colons = {new JLabel(":"), new JLabel(":")};
+            colons[0].setFont(fontTimeLabels);
+            colons[1].setFont(fontTimeLabels);
+            labelSeconds = new JLabel();
+            labelSeconds.setFont(fontTimeLabels);
+            labelMinutes = new JLabel();
+            labelMinutes.setFont(fontTimeLabels);
+            labelHours = new JLabel();
+            labelHours.setFont(fontTimeLabels);
+            visualTimerPanel.add(labelSeconds);
+            visualTimerPanel.add(colons[0]);
+            visualTimerPanel.add(labelMinutes);
+            visualTimerPanel.add(colons[1]);
+            visualTimerPanel.add(labelHours);
             contentPane.add(visualTimerPanel);
         }
         // create mid panel: start stop buttons
@@ -81,6 +94,8 @@ public class IntervalTimerApp extends JFrame{
             optionsPanel.setBorder(null);
         }
         
+        ClockUpdater clockUpdater = new ClockUpdater(labelSeconds, labelMinutes, labelHours);
+        clockUpdater.startCountdown(30);
         
     }
 
