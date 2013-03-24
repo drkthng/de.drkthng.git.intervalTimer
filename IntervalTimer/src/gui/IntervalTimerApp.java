@@ -70,11 +70,11 @@ public class IntervalTimerApp extends JFrame{
             labelMinutes.setFont(fontTimeLabels);
             labelHours = new JLabel();
             labelHours.setFont(fontTimeLabels);
-            visualTimerPanel.add(labelSeconds);
+            visualTimerPanel.add(labelHours);
             visualTimerPanel.add(colons[0]);
             visualTimerPanel.add(labelMinutes);
             visualTimerPanel.add(colons[1]);
-            visualTimerPanel.add(labelHours);
+            visualTimerPanel.add(labelSeconds);
             contentPane.add(visualTimerPanel);
         }
         // create mid panel: start stop buttons
