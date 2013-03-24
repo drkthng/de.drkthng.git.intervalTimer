@@ -20,6 +20,7 @@ import countdown.Countdown;
 public class ClockUpdater implements ActionListener{
 
     private JLabel labelSeconds, labelMinutes, labelHours;
+    private int remainingSeconds;
    
     public ClockUpdater(JLabel labelSeconds, JLabel labelMinutes, JLabel labelHours) {
         this.labelSeconds = labelSeconds;
@@ -35,7 +36,7 @@ public class ClockUpdater implements ActionListener{
     private void updateLabels(int remainingSeconds) {
         int seconds = remainingSeconds % 60;
         int minutes = (remainingSeconds / 60) % 60;
-        int hours = remainingSeconds % 3600;
+        int hours = remainingSeconds / 3600;
         labelSeconds.setText(intTo2DigitString(seconds));
         labelMinutes.setText(intTo2DigitString(minutes));
         labelHours.setText(intTo2DigitString(hours));
@@ -43,6 +44,8 @@ public class ClockUpdater implements ActionListener{
     
     public void startCountdown(int seconds) {
         new Countdown(seconds, this);
+        remainingSeconds = seconds;
+        updateLabels(remainingSeconds);
     }
     
     /* (non-Javadoc)
@@ -50,8 +53,8 @@ public class ClockUpdater implements ActionListener{
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        
+        remainingSeconds--;
+        updateLabels(remainingSeconds);        
     }
     
     private String intTo2DigitString(int number) {
