@@ -4,9 +4,11 @@
  */
 package gui;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Rectangle;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -77,13 +79,22 @@ public class IntervalTimerApp extends JFrame{
             visualTimerPanel.add(labelSeconds);
             contentPane.add(visualTimerPanel);
         }
-        // create mid panel: start stop buttons
+        // create mid panel: START STOP BUTTONS
         {
             JPanel buttonsPanel = new JPanel();
             buttonsPanel.setBorder(null);
-            buttonsPanel.setLayout(new FlowLayout());
+            final int gapBetweenElements = 20;
+            buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, gapBetweenElements, 0));
             buttonStart = new JButton("Start");
             buttonStop = new JButton("Stop");
+            int buttonWidth = 150;
+            int buttonHeight = 50;
+            Dimension buttonDimension = new Dimension(buttonWidth, buttonHeight);
+            buttonStart.setPreferredSize(buttonDimension);
+            buttonStop.setPreferredSize(buttonDimension);
+            Font fontButtons = new Font("Dialog", Font.PLAIN, 36);
+            buttonStart.setFont(fontButtons);
+            buttonStop.setFont(fontButtons);
             buttonsPanel.add(buttonStart);
             buttonsPanel.add(buttonStop);
             contentPane.add(buttonsPanel);
