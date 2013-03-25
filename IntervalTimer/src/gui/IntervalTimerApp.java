@@ -1,7 +1,3 @@
-/**
- * Copyright (c) 2013 Dirk Thonig
- * All rights reserved.
- */
 package gui;
 
 import java.awt.Dimension;
@@ -19,7 +15,7 @@ import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
 
 /**
- * @author "Dirk Thonig"
+ * @author "drkthng"
  *
  */
 public class IntervalTimerApp extends JFrame{
@@ -37,6 +33,7 @@ public class IntervalTimerApp extends JFrame{
             public void run() {
                 try {
                     IntervalTimerApp frame = new IntervalTimerApp();
+                    frame.setResizable(false);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -82,7 +79,7 @@ public class IntervalTimerApp extends JFrame{
         // create mid panel: START STOP BUTTONS
         {
             JPanel buttonsPanel = new JPanel();
-            buttonsPanel.setBorder(null);
+            buttonsPanel.setBorder(new EmptyBorder(5,5,5,5));
             final int gapBetweenElements = 20;
             buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, gapBetweenElements, 0));
             buttonStart = new JButton("Start");
@@ -102,7 +99,9 @@ public class IntervalTimerApp extends JFrame{
         // create bottom panel: list of timers, add new timer, other options
         {
             JPanel optionsPanel = new JPanel();
-            optionsPanel.setBorder(null);
+            optionsPanel.setBorder(new EmptyBorder(5,5,5,5));
+            
+            contentPane.add(optionsPanel);
         }
         
         ClockUpdater clockUpdater = new ClockUpdater(labelSeconds, labelMinutes, labelHours);

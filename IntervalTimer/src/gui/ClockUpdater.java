@@ -1,7 +1,3 @@
-/**
- * Copyright (c) 2013 Dirk Thonig
- * All rights reserved.
- */
 package gui;
 
 import java.awt.event.ActionEvent;
@@ -14,7 +10,7 @@ import javax.swing.JLabel;
 import countdown.Countdown;
 
 /**
- * @author "Dirk Thonig"
+ * @author "drkthng"
  *
  */
 public class ClockUpdater implements ActionListener{

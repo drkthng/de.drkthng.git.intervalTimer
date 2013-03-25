@@ -8,12 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 
 /**
- * Copyright (c) 2013 Dirk Thonig
- * All rights reserved.
- */
-
-/**
- * @author "Dirk Thonig"
+ * @author "drkthng"
  *
  */
 public class Countdown{
