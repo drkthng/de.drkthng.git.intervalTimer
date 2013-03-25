@@ -11,7 +11,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
 
@@ -59,9 +61,9 @@ public class IntervalTimerApp extends JFrame{
         // create top panel: visualization of the timer
         {
             JPanel visualTimerPanel = new JPanel();
-            visualTimerPanel.setBorder(new EmptyBorder(5,5,5,5));
+            visualTimerPanel.setBorder(null);
             visualTimerPanel.setLayout(new FlowLayout());
-            Font fontTimeLabels = new Font("Dialog", Font.PLAIN, 72);
+            Font fontTimeLabels = new Font("Dialog", Font.PLAIN, 80);
             JLabel[] colons = {new JLabel(":"), new JLabel(":")};
             colons[0].setFont(fontTimeLabels);
             colons[1].setFont(fontTimeLabels);
@@ -81,12 +83,12 @@ public class IntervalTimerApp extends JFrame{
         // create mid panel: START STOP BUTTONS
         {
             JPanel buttonsPanel = new JPanel();
-            buttonsPanel.setBorder(new EmptyBorder(5,5,5,5));
+            buttonsPanel.setBorder(null);
             final int gapBetweenElements = 20;
             buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, gapBetweenElements, 0));
             buttonStart = new JButton("Start");
             buttonStop = new JButton("Stop");
-            int buttonWidth = 150;
+            int buttonWidth = 160;
             int buttonHeight = 50;
             Dimension buttonDimension = new Dimension(buttonWidth, buttonHeight);
             buttonStart.setPreferredSize(buttonDimension);
@@ -101,8 +103,16 @@ public class IntervalTimerApp extends JFrame{
         // create bottom panel: list of timers, add new timer, other options
         {
             JPanel optionsPanel = new JPanel();
-            optionsPanel.setBorder(new EmptyBorder(5,5,5,5));
+            optionsPanel.setBorder(null);
+            JList listOfCountdowns = new JList();
+            final int listHeight = 160;
+            final int listWidth = 340;
+            Dimension scrollPaneDimension = new Dimension(listWidth, listHeight);
+            JScrollPane listScroller = new JScrollPane(listOfCountdowns,
+                    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            listScroller.setPreferredSize(scrollPaneDimension);
             
+            optionsPanel.add(listScroller);
             contentPane.add(optionsPanel, BorderLayout.SOUTH);
         }
         
