@@ -58,9 +58,9 @@ public class IntervalTimerApp extends JFrame{
         // create top panel: visualization of the timer
         {
             JPanel visualTimerPanel = new JPanel();
-            visualTimerPanel.setBorder(null);
+            visualTimerPanel.setBorder(new EmptyBorder(5,5,5,5));
             visualTimerPanel.setLayout(new FlowLayout());
-            Font fontTimeLabels = new Font("Dialog", Font.PLAIN, 64);
+            Font fontTimeLabels = new Font("Dialog", Font.PLAIN, 72);
             JLabel[] colons = {new JLabel(":"), new JLabel(":")};
             colons[0].setFont(fontTimeLabels);
             colons[1].setFont(fontTimeLabels);
