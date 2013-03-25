@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
@@ -52,7 +53,8 @@ public class IntervalTimerApp extends JFrame{
         setBounds(100, 100, 400, 400);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5,5,5,5));
-        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+        final int borderLayoutGap = 10;
+        contentPane.setLayout(new BorderLayout(0, borderLayoutGap));
         setContentPane(contentPane);
         // create top panel: visualization of the timer
         {
@@ -74,7 +76,7 @@ public class IntervalTimerApp extends JFrame{
             visualTimerPanel.add(labelMinutes);
             visualTimerPanel.add(colons[1]);
             visualTimerPanel.add(labelSeconds);
-            contentPane.add(visualTimerPanel);
+            contentPane.add(visualTimerPanel, BorderLayout.NORTH);
         }
         // create mid panel: START STOP BUTTONS
         {
@@ -94,14 +96,14 @@ public class IntervalTimerApp extends JFrame{
             buttonStop.setFont(fontButtons);
             buttonsPanel.add(buttonStart);
             buttonsPanel.add(buttonStop);
-            contentPane.add(buttonsPanel);
+            contentPane.add(buttonsPanel, BorderLayout.CENTER);
         }
         // create bottom panel: list of timers, add new timer, other options
         {
             JPanel optionsPanel = new JPanel();
             optionsPanel.setBorder(new EmptyBorder(5,5,5,5));
             
-            contentPane.add(optionsPanel);
+            contentPane.add(optionsPanel, BorderLayout.SOUTH);
         }
         
         ClockUpdater clockUpdater = new ClockUpdater(labelSeconds, labelMinutes, labelHours);
