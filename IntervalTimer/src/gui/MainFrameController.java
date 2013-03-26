@@ -1,13 +1,9 @@
 package gui;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
 
 import countdown.Countdown;
 import countdown.CountdownListener;
@@ -19,7 +15,6 @@ import countdown.CountdownListener;
 public class MainFrameController implements CountdownListener{
     
     private MainFrame mainFrame;
-    private List<Countdown> listOfCountdowns;
     private DisplayUpdater display;
     
     public MainFrameController() {
@@ -35,19 +30,15 @@ public class MainFrameController implements CountdownListener{
 
             @Override
             public void actionPerformed(ActionEvent event) {
-                DefaultListModel listModel = mainFrame.getCountdownListModel();
-                ArrayList<Countdown> listOfCountdowns = new ArrayList<Countdown>();
+                DefaultListModel<Countdown> listModel = mainFrame.getCountdownListModel();
                 for (int i = 0; i < listModel.getSize(); i++) {
-                    ((Countdown)listModel.get(i)).start();
+                    Countdown countdown = (Countdown)listModel.get(i);
+                    display.update(countdown.getCountdownLength());
+                    countdown.start();
                 }
                 
             }
         });
-    }
-    
-    public void startCountdown(int seconds) {
-        Countdown countdown = new Countdown(seconds, this);
-        countdown.start();
     }
 
     /* (non-Javadoc)

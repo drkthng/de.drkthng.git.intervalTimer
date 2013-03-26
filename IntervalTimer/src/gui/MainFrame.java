@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -17,6 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
+import countdown.Countdown;
+
 /**
  * @author "drkthng"
  *
@@ -29,8 +30,8 @@ public class MainFrame extends JFrame{
     private JPanel contentPane;
     private JLabel labelSeconds, labelMinutes, labelHours;
     private JButton buttonStart, buttonStop;
-    private JList listOfCountdowns;
-    private DefaultListModel listModel;
+    private JList<Countdown> listOfCountdowns;
+    private DefaultListModel<Countdown> listModel;
     private ClockUpdater clockUpdater;
     
     /**
@@ -60,7 +61,7 @@ public class MainFrame extends JFrame{
         return clockUpdater;
     }
     
-    public DefaultListModel getCountdownListModel() {
+    public DefaultListModel<Countdown> getCountdownListModel() {
         return listModel;
     }
     
@@ -116,8 +117,8 @@ public class MainFrame extends JFrame{
         {
             JPanel optionsPanel = new JPanel();
             optionsPanel.setBorder(null);
-            listModel = new DefaultListModel();
-            listOfCountdowns = new JList(listModel);
+            listModel = new DefaultListModel<Countdown>();
+            listOfCountdowns = new JList<Countdown>(listModel);
             listOfCountdowns.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
             final int listHeight = 160;
             final int listWidth = 340;
