@@ -5,54 +5,41 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Rectangle;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
 
 /**
  * @author "drkthng"
  *
  */
-public class IntervalTimerApp extends JFrame{
+public class MainFrame extends JFrame{
 
+    private final int WIDTH = 400;
+    private final int HEIGHT = 400;
+    
     private JPanel contentPane;
     private JLabel labelSeconds, labelMinutes, labelHours;
     private JButton buttonStart, buttonStop;
     
     /**
-     * main method: start the gui-application IntervalTimer
-     * @param args
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    IntervalTimerApp frame = new IntervalTimerApp();
-                    frame.setResizable(false);
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-    }
-    
-    /**
      * constructor: create the gui and set defaults
      */
-    public IntervalTimerApp() {
+    public MainFrame() {
         setTitle("Interval Timer");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 400, 400);
+        setBounds(100, 100, WIDTH, HEIGHT);
+        init();
+        setResizable(false);
+        setVisible(true);
+    }
+    
+    private void init() {
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5,5,5,5));
         final int borderLayoutGap = 10;
@@ -119,6 +106,7 @@ public class IntervalTimerApp extends JFrame{
         ClockUpdater clockUpdater = new ClockUpdater(labelSeconds, labelMinutes, labelHours);
         clockUpdater.startCountdown(30);
         
+        pack();
     }
 
 }
