@@ -6,7 +6,7 @@ import javax.swing.JLabel;
  * @author "drkthng"
  *
  */
-public class ClockUpdater {
+public class ClockUpdater implements DisplayUpdater{
 
     private JLabel labelSeconds, labelMinutes, labelHours;
    
@@ -21,6 +21,7 @@ public class ClockUpdater {
         update(0);
     }
     
+    @Override
     public void update(int remainingSeconds) {
         int seconds = remainingSeconds % 60;
         int minutes = (remainingSeconds / 60) % 60;
