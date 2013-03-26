@@ -1,12 +1,7 @@
 package countdown;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashSet;
-import java.util.Set;
-
-import javax.swing.JLabel;
 import javax.swing.Timer;
 
 /**
@@ -67,5 +62,16 @@ public class Countdown{
     
     public boolean isOver() {
         return isOver;
+    }
+    
+    /**
+     * getCountdownLength()<br><br>
+     * 
+     * Return the number of seconds the countdown will last
+     * 
+     * @return int seconds
+     */
+    public int getCountdownLength() {
+        return seconds;
     }
 }
