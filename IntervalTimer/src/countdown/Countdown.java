@@ -57,7 +57,7 @@ public class Countdown{
                 updateListeners(secondCounter);
             }
         }));
-        timer.setRepeats(false);
+        timer.setRepeats(true);
         timer.start();
     }
     
