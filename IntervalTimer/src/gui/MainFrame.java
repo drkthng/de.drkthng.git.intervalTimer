@@ -5,13 +5,16 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -26,6 +29,9 @@ public class MainFrame extends JFrame{
     private JPanel contentPane;
     private JLabel labelSeconds, labelMinutes, labelHours;
     private JButton buttonStart, buttonStop;
+    private JList listOfCountdowns;
+    private DefaultListModel listModel;
+    private ClockUpdater clockUpdater;
     
     /**
      * constructor: create the gui and set defaults
@@ -37,6 +43,25 @@ public class MainFrame extends JFrame{
         init();
         setResizable(false);
         setVisible(true);
+    }
+    
+    public void buttonStartAction(ActionListener action) {
+        buttonStart.addActionListener(action);
+    }
+    
+    public void buttonStopAction(ActionListener action) {
+        buttonStop.addActionListener(action);
+    }
+    
+    public ClockUpdater getClockUpdaterInstance() {
+        if (clockUpdater == null) {
+            clockUpdater = new ClockUpdater(labelSeconds, labelMinutes, labelHours);
+        }
+        return clockUpdater;
+    }
+    
+    public DefaultListModel getCountdownListModel() {
+        return listModel;
     }
     
     private void init() {
@@ -91,7 +116,9 @@ public class MainFrame extends JFrame{
         {
             JPanel optionsPanel = new JPanel();
             optionsPanel.setBorder(null);
-            JList listOfCountdowns = new JList();
+            listModel = new DefaultListModel();
+            listOfCountdowns = new JList(listModel);
+            listOfCountdowns.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
             final int listHeight = 160;
             final int listWidth = 340;
             Dimension scrollPaneDimension = new Dimension(listWidth, listHeight);
@@ -102,9 +129,6 @@ public class MainFrame extends JFrame{
             optionsPanel.add(listScroller);
             contentPane.add(optionsPanel, BorderLayout.SOUTH);
         }
-        
-        ClockUpdater clockUpdater = new ClockUpdater(labelSeconds, labelMinutes, labelHours);
-        clockUpdater.startCountdown(30);
         
         pack();
     }

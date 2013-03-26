@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+
 import javax.swing.JLabel;
 
 /**
@@ -34,5 +36,6 @@ public class ClockUpdater implements DisplayUpdater{
     private String intTo2DigitString(int number) {
         return String.format("%02d", number);
     }
+
 
 }
